@@ -1,0 +1,67 @@
+{{ define "update" }}
+
+{{ template "base" }}
+
+<nav class="py-2 bg-body-tertiary border-bottom">
+    <div class="container d-flex flex-wrap">
+      <ul class="nav me-auto">
+        <li class="nav-item"><a href="/subject" class="nav-link link-body-emphasis px-2 active" aria-current="page">Предметы</a></li>
+          <li class="nav-item"><a class="nav-link link-body-emphasis px-2 active" aria-current="page">/</a></li>
+        <li class="nav-item"><a href="/subject/{{.Subname}}" class="nav-link link-body-emphasis px-2">Группы</a></li>
+          <li class="nav-item"><a class="nav-link link-body-emphasis px-2 active" aria-current="page">/</a></li>
+          <li class="nav-item"><a href="/subject/{{.Subname}}/{{.GroupShortname}}" class="nav-link link-body-emphasis px-2">{{.GroupName}}</a></li>
+          <li class="nav-item"><a class="nav-link link-body-emphasis px-2 active" aria-current="page">/</a></li>
+      </ul>
+      <ul class="nav">
+        <li class="nav-item"><a class="nav-link link-body-emphasis px-2">{{.Username}}</a></li>
+        <li class="nav-item"><a href="/logout" class="nav-link link-body-emphasis px-2">Выход</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<body>
+<div class="container mt-5">
+    <form method="post">
+        <label><b>Редактирование</b></label><br>
+        <div class="list-group">
+            <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="radio" name="listG" id="listG1" value="1" checked="">
+                <span>Присутствовал</span>
+            </label>
+            <label class="list-group-item d-flex gap-2">
+                <input class="form-check-input flex-shrink-0" type="radio" name="listG" id="listG2" value="0">
+                <span>Отсутствовал</span>
+            </label>
+        </div>
+        {{if eq .Kind 1}}
+            <label><b>Выберите оценку</b></label><br>
+            <div class="list-group">
+                <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="radio" name="listGroup" id="listGroup1" value="2">
+                    <span>2</span>
+                </label>
+                <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="radio" name="listGroup" id="listGroup2" value="3">
+                    <span>3</span>
+                </label>
+                <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="radio" name="listGroup" id="listGroup3" value="4">
+                    <span>4</span>
+                </label>
+                <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="radio" name="listGroup" id="listGroup4" value="5">
+                    <span>5</span>
+                </label>
+                <label class="list-group-item d-flex gap-2">
+                    <input class="form-check-input flex-shrink-0" type="radio" name="listGroup" id="listGroup5" value="0" checked="">
+                    <span>Отсутствовал</span>
+                </label>
+            </div>
+        {{end}}
+        <input type="submit" class="btn btn-success" value="Подтвердить">
+    </form>
+</div>
+</body>
+</html>
+
+{{ end }}

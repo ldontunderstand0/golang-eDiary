@@ -1,0 +1,37 @@
+{{ define "list" }}
+
+{{ template "base" }}
+
+<nav class="py-2 bg-body-tertiary border-bottom">
+  <div class="container d-flex flex-wrap">
+    <ul class="nav me-auto">
+        {{if ne .Type "subject"}}
+      <li class="nav-item"><a href="/subject" class="nav-link link-body-emphasis px-2 active" aria-current="page">Предметы</a></li>
+        <li class="nav-item"><a class="nav-link link-body-emphasis px-2 active" aria-current="page">/</a></li>
+        {{end}}
+    </ul>
+    <ul class="nav">
+      <li class="nav-item"><a class="nav-link link-body-emphasis px-2">{{.Username}}</a></li>
+      <li class="nav-item"><a href="/logout" class="nav-link link-body-emphasis px-2">Выход</a></li>
+    </ul>
+  </div>
+</nav>
+
+<body>
+<div class="container mt-5">
+    <h1>{{.Name}}</h1>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+    {{ range $elem := .List }}
+      <div class="feature col">
+        <h3 class="fs-2 text-body-emphasis">{{ .String1 }}</h3>
+        <a href="/{{ $.Type }}/{{ .String2 }}" class="icon-link">
+          {{ $.Btn_name }}
+          <svg class="bi"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+      </div>
+    {{ end }}
+    </div>
+</div>
+</body>
+</html>
+{{ end }}

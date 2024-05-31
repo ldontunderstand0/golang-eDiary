@@ -1,0 +1,40 @@
+{{ define "stats" }}
+
+{{ template "base" }}
+
+<nav class="py-2 bg-body-tertiary border-bottom">
+    <div class="container d-flex flex-wrap">
+      <ul class="nav me-auto">
+      </ul>
+      <ul class="nav">
+        <li class="nav-item"><a class="nav-link link-body-emphasis px-2">{{.Username}}</a></li>
+        <li class="nav-item"><a href="/logout" class="nav-link link-body-emphasis px-2">Выход</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<body>
+<div class="container mt-5">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+              <th scope="col">Предмет</th>
+              <th scope="col">Средний бал</th>
+              <th scope="col">Процент посещения</th>
+            </tr>
+        </thead>
+        <tbody>
+    {{ range .StatsList }}
+            <tr>
+                <td>{{ .Subject }}</td>
+                <td>{{ .Avg }}</td>
+                <td>{{ .Perc }}</td>
+            </tr>
+    {{end}}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
+{{ end }}

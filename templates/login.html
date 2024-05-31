@@ -1,0 +1,25 @@
+{{ define "login" }}
+
+{{ template "base" }}
+
+<body>
+<main class="form-signin w-100 m-auto">
+    <form method="post">
+      <h1 class="h3 mb-3 fw-normal">Вход</h1>
+  
+      <div class="form-floating">
+        <input type="text" class="form-control" id="floatingInput" name="floatingInput">
+        <label for="floatingInput">Логин</label>
+      </div><br>
+      <div class="form-floating">
+        <input type="password" class="form-control" id="floatingPassword" name="floatingPassword">
+        <label for="floatingPassword">Пароль</label>
+      </div><br>
+      <input class="btn btn-primary w-100 py-2" type="submit" value="Войти">
+    </form><br>
+    <a href="/signup" class="icon-link">Зарегистрироваться</a>
+  </main>
+</body>
+</html>
+
+{{ end }}

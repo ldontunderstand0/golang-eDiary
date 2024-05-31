@@ -1,0 +1,36 @@
+{{ define "create" }}
+
+{{ template "base" }}
+
+<nav class="py-2 bg-body-tertiary border-bottom">
+    <div class="container d-flex flex-wrap">
+      <ul class="nav me-auto">
+        <li class="nav-item"><a href="/subject" class="nav-link link-body-emphasis px-2 active" aria-current="page">Предметы</a></li>
+          <li class="nav-item"><a class="nav-link link-body-emphasis px-2 active" aria-current="page">/</a></li>
+        <li class="nav-item"><a href="/admin" class="nav-link link-body-emphasis px-2">Админ</a></li>
+          <li class="nav-item"><a class="nav-link link-body-emphasis px-2 active" aria-current="page">/</a></li>
+          <li class="nav-item"><a href="/admin/{{.Type}}" class="nav-link link-body-emphasis px-2">{{.Type}}</a></li>
+          <li class="nav-item"><a class="nav-link link-body-emphasis px-2 active" aria-current="page">/</a></li>
+      </ul>
+      <ul class="nav">
+        <li class="nav-item"><a class="nav-link link-body-emphasis px-2">{{.Username}}</a></li>
+        <li class="nav-item"><a href="/logout" class="nav-link link-body-emphasis px-2">Выход</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<body>
+<div class="container mt-5">
+    <h1>{{ .Name }}</h1>
+    <form method="post">
+        {{ range .Crud }}
+        <label for="{{ .Form }}">{{ .Form }}</label>
+        <input type="text" name="{{ .Form }}" id="{{ .Form }}" placeholder="{{ .Form }}" value="{{ .Value }}" class="form-control">
+        {{ end }}
+        <input type="submit" class="btn btn-success" value="{{ .Name }}">
+    </form>
+</div>
+</body>
+</html>
+
+{{ end }}

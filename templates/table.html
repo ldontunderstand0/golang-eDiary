@@ -1,0 +1,81 @@
+{{ define "table" }}
+
+{{ template "base" }}
+
+<nav class="py-2 bg-body-tertiary border-bottom">
+    <div class="container d-flex flex-wrap">
+      <ul class="nav me-auto">
+        <li class="nav-item"><a href="/subject" class="nav-link link-body-emphasis px-2 active" aria-current="page">Предметы</a></li>
+          <li class="nav-item"><a class="nav-link link-body-emphasis px-2 active" aria-current="page">/</a></li>
+        <li class="nav-item"><a href="/subject/{{.SubjectName}}" class="nav-link link-body-emphasis px-2">Группы</a></li>
+          <li class="nav-item"><a class="nav-link link-body-emphasis px-2 active" aria-current="page">/</a></li>
+      </ul>
+      <ul class="nav">
+        <li class="nav-item"><a class="nav-link link-body-emphasis px-2">{{.Username}}</a></li>
+        <li class="nav-item"><a href="/logout" class="nav-link link-body-emphasis px-2">Выход</a></li>
+      </ul>
+    </div>
+  </nav>
+
+<body>
+<div class="container mt-5">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+              <th scope="col">ФИО</th>
+              <th scope="col">Процент посещения</th>
+              <th scope="col">Средний бал</th>
+                <th scope="col">Занятия:</th>
+                {{range .LessionList}}
+                <th scope="col">{{ .Date }}, {{ .Kind }}</th>
+                {{end}}
+              <th scope="col"><button onclick='window.dialog.showModal()'>Добавить занятие</button></th>
+            </tr>
+        </thead>
+        <tbody>
+    {{range .RowList}}
+            <tr>
+                <td>{{ .Name }}</td>
+                <td>{{ .Perc }}</td>
+                <td>{{ .Avg }}</td>
+                <td></td>
+                {{range .Grade}}
+                <td><a href="/subject/ais/ivtas-32/{{.Id}}" class="icon-link">{{ .Grade }}</a></td>
+                {{end}}
+            </tr>
+    {{end}}
+        </tbody>
+    </table>
+</div>
+<dialog aria-labelledby="dialog-name" id="dialog">
+    <form method="post" id="form1">
+        <label><b>Выберите вид занятия</b></label>
+        <div class="list-group">
+        <label class="list-group-item d-flex gap-2">
+          <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios" id="listGroupRadios1" value="Лекция" checked="">
+          <span>
+            Лекция
+          </span>
+        </label>
+        <label class="list-group-item d-flex gap-2">
+          <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios" id="listGroupRadios2" value="Практика">
+          <span>
+            Практика
+          </span>
+        </label>
+        <label class="list-group-item d-flex gap-2">
+          <input class="form-check-input flex-shrink-0" type="radio" name="listGroupRadios" id="listGroupRadios3" value="Лабораторная работа">
+          <span>
+            Лабораторная работа
+          </span>
+        </label>
+      </div>
+        <label><b>Введите дату занятия</b></label><br>
+        <input type="text" onchange="addDescripts(this)" id="date" name="date" class="form-control"></input><br>
+        <input type="submit" onclick="window.dialog.close()" class="btn" value="Подтвердить">
+    </form>
+    <button onclick="window.dialog.close()" class="btn">Отмена</button>
+</dialog>
+</body>
+</html>
+{{ end }}

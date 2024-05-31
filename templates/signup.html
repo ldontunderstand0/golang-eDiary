@@ -1,0 +1,22 @@
+{{ define "signup" }}
+
+{{ template "base" }}
+
+<body>
+    <main class="form-signin w-100 m-auto">
+        <h3>Регистрация</h3>
+        <form method="post">
+            {{range . }}
+            <div class="form-floating">
+            <input type="text" name="{{ .String2 }}" id="{{ .String2 }}" placeholder="{{ .String1 }}" class="form-control">
+                <label for="{{ .String2 }}">{{ .String1 }}</label>
+        </div><br>
+            {{end}}
+            <input type="submit" class="btn btn-primary w-100 py-2" value="Зарегистрироваться">
+        </form><br>
+        <a href="/login" class="icon-link">Войти</a>
+    </main>
+</body>
+</html>
+
+{{ end }}
